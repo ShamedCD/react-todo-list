@@ -36,10 +36,7 @@ const RemoveButton = styled(Button)`
 `;
 
 const TodoItemContainerWarning = styled(TodoItemContainer)`
-    border-bottom: ${(props) => (new Date(props.createdAt) > new Date(Date.now() - 8640000 * 5)
-        ? 'none'
-        : '2px solid red'
-    )};
+    border-bottom: ${(props) => getBorderByDate(new Date(props.createdAt), Date.now())};
 `;
 
 const TodoListItem = ({ todo, onRemovePressed, onCompletePressed }) => {
@@ -66,5 +63,11 @@ const TodoListItem = ({ todo, onRemovePressed, onCompletePressed }) => {
         </Container>
     );
 }
+
+export const getBorderByDate = (startDate, currentDate) => (
+    startDate > new Date(currentDate - 8640000 * 5)
+        ? 'none'
+        : '2px solid red'
+);
 
 export default TodoListItem;

@@ -6,7 +6,7 @@ export const loadTodos = () => async (dispatch, getState) => {
     try {
         dispatch(loadTodosInProgress());
     
-        const response = await fetch(`${todosApi}/todos-delay`);
+        const response = await fetch(`${todosApi}/todos`);
         const todos = await response.json();
     
         dispatch(loadTodosSuccess(todos));
